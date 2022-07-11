@@ -15,26 +15,33 @@
 			<aside>
 				<div class="searching">
 					<h3>Search for a City:</h3>
-					<textarea id="" placeholder="San Diego"></textarea>
-					<button>Search</button>
+					<div class="user-search">
+						<textarea id="userInputText" placeholder="San Diego"></textarea>
+						<button id="searchBtn">Search</button>
+					</div>
 				</div>
 				<hr />
-				<div class="history">
-					<div class="block">Perris</div>
-					<div class="block">Austin</div>
-					<div class="block">Denver</div>
-				</div>
+				<ul class="history">
+					<li class="block">Perris</li>
+					<li class="block">Austin</li>
+					<li class="block">Denver</li>
+				</ul>
 			</aside>
 			<section class="sec1">
 				<h3>
 					<span id="cityName">Perris </span>(<span id="cityDate">3/30/2021</span
 					>) <span id="cityIcon">☁️</span>
 				</h3>
-				<p>Temperature: <span id="temp"></span></p>
-				<p>Wind Speed: <span id="wind"></span></p>
-				<p>Humidity: <span id="humidity"></span></p>
-				<p>UV Index: <span id="uvIndex"></span></p>
+				<div class="sec1-stats">
+					<p>Temperature: <span id="temp">99</span> °F</p>
+					<p>Wind Speed: <span id="wind">99</span> MPH</p>
+					<p>Humidity: <span id="humidity">99</span>%</p>
+					<p>UV Index: <span id="uvIndex">99</span></p>
+				</div>
 			</section>
+
+			<!-- section two  -->
+
 			<section class="sec2">
 				<h3>5-Day Forecast:</h3>
 				<div class="weather-card-container">
@@ -43,13 +50,13 @@
 						<div class="weather-card-date">3/31/2021</div>
 						<div class="weather-card-icon">☁️</div>
 						<div class="weather-card-temp">
-							Temp:<span id="cardTemp">73.72</span> °F
+							Temp: <span id="cardTemp">73.72</span> °F
 						</div>
 						<div class="weather-card-wind">
-							Wind:<span id="cardWind">9.53</span> MPH
+							Wind: <span id="cardWind">9.53</span> MPH
 						</div>
 						<div class="weather-card-humidity">
-							Humidity:<span id="cardHmdy">68</span> %
+							Humidity: <span id="cardHmdy">68</span> %
 						</div>
 					</div>
 
@@ -58,13 +65,13 @@
 						<div class="weather-card-date">3/31/2021</div>
 						<div class="weather-card-icon">☁️</div>
 						<div class="weather-card-temp">
-							Temp:<span id="cardTemp">73.72</span> °F
+							Temp: <span id="cardTemp">73.72</span> °F
 						</div>
 						<div class="weather-card-wind">
-							Wind:<span id="cardWind">9.53</span> MPH
+							Wind: <span id="cardWind">9.53</span> MPH
 						</div>
 						<div class="weather-card-humidity">
-							Humidity:<span id="cardHmdy">68</span> %
+							Humidity: <span id="cardHmdy">68</span> %
 						</div>
 					</div>
 
@@ -73,13 +80,13 @@
 						<div class="weather-card-date">3/31/2021</div>
 						<div class="weather-card-icon">☁️</div>
 						<div class="weather-card-temp">
-							Temp:<span id="cardTemp">73.72</span> °F
+							Temp: <span id="cardTemp">73.72</span> °F
 						</div>
 						<div class="weather-card-wind">
-							Wind:<span id="cardWind">9.53</span> MPH
+							Wind: <span id="cardWind">9.53</span> MPH
 						</div>
 						<div class="weather-card-humidity">
-							Humidity:<span id="cardHmdy">68</span> %
+							Humidity: <span id="cardHmdy">68</span> %
 						</div>
 					</div>
 
@@ -88,13 +95,13 @@
 						<div class="weather-card-date">3/31/2021</div>
 						<div class="weather-card-icon">☁️</div>
 						<div class="weather-card-temp">
-							Temp:<span id="cardTemp">73.72</span> °F
+							Temp: <span id="cardTemp">73.72</span> °F
 						</div>
 						<div class="weather-card-wind">
-							Wind:<span id="cardWind">9.53</span> MPH
+							Wind: <span id="cardWind">9.53</span> MPH
 						</div>
 						<div class="weather-card-humidity">
-							Humidity:<span id="cardHmdy">68</span> %
+							Humidity: <span id="cardHmdy">68</span> %
 						</div>
 					</div>
 
@@ -103,13 +110,13 @@
 						<div class="weather-card-date">3/31/2021</div>
 						<div class="weather-card-icon">☁️</div>
 						<div class="weather-card-temp">
-							Temp:<span id="cardTemp">73.72</span> °F
+							Temp: <span id="cardTemp">73.72</span> °F
 						</div>
 						<div class="weather-card-wind">
-							Wind:<span id="cardWind">9.53</span> MPH
+							Wind: <span id="cardWind">9.53</span> MPH
 						</div>
 						<div class="weather-card-humidity">
-							Humidity:<span id="cardHmdy">68</span> %
+							Humidity: <span id="cardHmdy">68</span> %
 						</div>
 					</div>
 				</div>
