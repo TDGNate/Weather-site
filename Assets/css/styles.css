@@ -8,7 +8,8 @@
 
 body {
 	height: 100%;
-	background: darkslategrey;
+	background: #212121;
+	color: white;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -43,10 +44,11 @@ main {
 
 aside {
 	grid-area: side;
-	background: yellow;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
+	border-right: 1px solid rgb(59, 59, 59);
+	margin-top: 1rem;
 }
 
 .searching h3 {
@@ -69,6 +71,8 @@ aside {
 	justify-content: center;
 	outline: none;
 	border-radius: 5px;
+	font-size: 1rem;
+	font-family: 'Roboto', sans-serif;
 }
 
 #searchBtn {
@@ -93,19 +97,29 @@ hr {
 }
 
 .block {
-	background: pink;
+	background: rgb(175, 212, 255);
+	border: 1px solid rgb(255, 255, 255);
+	color: black;
 	padding: 1rem;
-	border: 1px solid red;
 	margin: 0.4rem 0;
 	text-align: center;
 	border-radius: 5px;
+	transition: all 200ms ease;
+}
+
+.block:hover {
+	background: rgb(54, 124, 255);
+	color: white;
+	cursor: pointer;
 }
 
 /* right side sections  */
 
 .sec1 {
+	border: 1px solid grey;
+	border-radius: 3px;
+	margin: 1rem;
 	grid-area: sec1;
-	background: green;
 	padding: 1rem;
 }
 
@@ -125,8 +139,8 @@ hr {
 }
 
 .sec2 {
+	margin: 1rem;
 	grid-area: sec2;
-	background: rgb(0, 80, 0);
 	padding: 1rem;
 }
 
@@ -137,37 +151,82 @@ hr {
 	flex-direction: row;
 	flex-wrap: wrap;
 	margin-top: 2rem;
-	padding: 1rem;
+	padding: 1rem 0;
 }
 
 .weather-card {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	background: orange;
+	background: rgb(75, 75, 75);
+	border: 1px solid rgb(172, 172, 172);
 	padding: 1rem;
 	margin: 0 0.8rem;
 	margin-bottom: 1rem;
 	min-width: 175px;
-	min-height: 220px;
+	min-height: 230px;
+	font-size: 1.2rem;
+	transition: all 200ms ease;
+}
+
+.weather-card:hover {
+	background: rgb(82, 82, 82);
 }
 
 .weather-card-date {
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 	font-weight: bold;
 	margin-bottom: 0.3rem;
 }
 
 /* media queries  */
 
+/* tablet  */
+
+@media screen and (max-width: 850px) {
+	main {
+		grid-template:
+			'side side sec1 sec1'
+			'side side sec1 sec1'
+			'side side sec2 sec2';
+		height: auto;
+	}
+}
+
 /* phone  */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 540px) {
 	main {
 		grid-template:
 			'side side side side'
 			'sec1 sec1 sec1 sec1'
 			'sec2 sec2 sec2 sec2';
 		height: auto;
+	}
+
+	.searching {
+		text-align: center;
+	}
+
+	#userInputText {
+		padding: 1rem;
+	}
+
+	#searchBtn {
+		padding: 1rem;
+	}
+
+	.sec1 h3,
+	.sec2 h3 {
+		text-align: center;
+	}
+
+	.sec1-stats {
+		text-align: center;
+	}
+
+	.weather-card {
+		width: 100%;
+		text-align: center;
 	}
 }
