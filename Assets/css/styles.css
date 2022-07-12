@@ -118,6 +118,20 @@ hr {
 	cursor: pointer;
 }
 
+#clearHistory {
+	margin-top: 2rem;
+	padding: 0.8rem;
+	color: white;
+	background-color: rgb(255, 106, 106);
+	border: 1px solid white;
+	border-radius: 5px;
+	transition: all 200ms ease;
+}
+
+#clearHistory:hover {
+	background-color: red;
+}
+
 /* right side sections  */
 
 .sec1 {

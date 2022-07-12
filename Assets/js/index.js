@@ -4,6 +4,7 @@ const searchBtn = document.getElementById('searchBtn');
 // history List 
 const historyUl = document.querySelector('.history');
 let historyBlockLi = document.querySelectorAll('.block')
+const historyClearBtn = document.getElementById('clearHistory')
 
 // section one
 // title 
@@ -20,16 +21,20 @@ const humidP = document.getElementById('humidity');
 const uvIndexP = document.getElementById('uvIndex');
 
 // section two
-
+const cards = document.querySelectorAll('.weather-card')
 
 function getStoredBlocks() {
   let blocks = JSON.parse(localStorage.getItem('cityBlock'))
-  for (i = 0; i < blocks.length; i++) {
-    let block = blocks[i]
-    let li = document.createElement('li')
-    li.classList.add('block')
-    li.textContent = block
-    historyUl.append(li)
+  if (blocks === null) {
+    return
+  } else {
+    for (i = 0; i < blocks.length; i++) {
+      let block = blocks[i]
+      let li = document.createElement('li')
+      li.classList.add('block')
+      li.textContent = block
+      historyUl.append(li)
+    }
   }
 }
 getStoredBlocks()
@@ -38,7 +43,12 @@ function searchCity() {
   
   // get the user's message 
   let textValue = textArea.value
-  let storedHistory = [];
+  let storedHistoryState = [];
+  let storedHistory = JSON.parse(localStorage.getItem('cityBlock'));
+
+  if (storedHistory === null) {
+    storedHistory = []
+  }
 
   // check if it's null before sending value to weatherAPI 
   if (textValue === '') {
@@ -46,16 +56,18 @@ function searchCity() {
   } else {
     weatherApi(textValue)
     if (historyBlockLi.length >= 8 || storedHistory.includes(textValue)) {
+      textArea.value = ''
       return
     } else {
       let li = document.createElement('li')
       li.classList.add('block')
       li.textContent = textValue
       historyUl.append(li)
-      storedHistory.push(textValue)
+      storedHistoryState.push(textValue)
+      storedHistory = storedHistoryState
       localStorage.setItem('cityBlock', JSON.stringify(storedHistory))
-      textArea.value = ''
     }
+    textArea.value = ''
   }
 }
 
@@ -66,7 +78,12 @@ function weatherApi(location) {
   // call api 
   fetch(url1)
     .then(res => {
-      return res.json();
+      if (!res.ok) {
+        s1cityDate.textContent = 'Hmm... We got an Error'
+        return
+      } else {
+        return res.json();
+      }
     })
     .then(data => {
       s1MainDiv.style.display = 'none'
@@ -74,9 +91,6 @@ function weatherApi(location) {
       // console.log(data)
 
       let country = data[0].country;
-      if (country === undefined) {
-        s1cityDate.textContent = 'Hmm... Please try again'
-      }
       let state = data[0].state;
       let name = data[0].name;
       let lat = data[0].lat;
@@ -95,6 +109,7 @@ function weatherApi(location) {
           let temp = data.current.temp
           let uvi = data.current.uvi
           let wind_speed = data.current.wind_speed
+          let icon = data.current.weather[0].icon
 
           // get date 
           let today = new Date();
@@ -110,23 +125,55 @@ function weatherApi(location) {
           }
           s1cityDate.textContent = `${today}`;
           s1cityCountry.textContent = country;
+          s1cityIcon.src = `http://openweathermap.org/img/wn/${icon}.png`
           tempP.textContent = temp;
           windP.textContent = wind_speed
           humidP.textContent = humidity
           uvIndexP.textContent = uvi
 
+          // take off preloaders 
           setTimeout(() => {
             s1MainDiv.style.display = 'block'
             s1MainPreloader.style.display = 'none'
           }, 500)
+
+          // 5 Day Forecast
+          for (i = 0; i < cards.length; i++) {
+
+            // each day 
+            let day = data.daily[i]
+            let dayTemp = day.temp.day
+            let dayWind = day.wind_speed
+            let dayHumd = day.humidity
+            let dayIcon = day.weather[0].icon
+
+            // each card 
+            let cardTemp = document.querySelectorAll('.cardTemp')
+            let cardWind = document.querySelectorAll('.cardWind')
+            let cardHmdy = document.querySelectorAll('.cardHmdy')
+            let cardIcon = document.querySelectorAll('.weather-card-icon')
+
+            // change each with new data 
+            cardIcon.src = `http://openweathermap.org/img/wn/${dayIcon}.png`
+            cardTemp[i].textContent = dayTemp
+            cardWind[i].textContent = dayWind
+            cardHmdy[i].textContent = dayHumd
+          }
+        
         })
 
   })
 }
 
+historyClearBtn.addEventListener('click', () => {
+  localStorage.removeItem('cityBlock')
+  location.reload()
+})
+
 document.addEventListener('click', (e) => {
   if (e.target.className.includes('block')) {
     console.log('clicked', e.target.textContent)
+    weatherApi(e.target.textContent)
   }
 });
 
