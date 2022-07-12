@@ -8,6 +8,7 @@ const historyClearBtn = document.getElementById('clearHistory')
 
 // section one
 // title 
+const s1 = document.getElementById('secOne')
 const s1cityName = document.getElementById('cityName');
 const s1cityDate = document.getElementById('cityDate');
 const s1cityIcon = document.getElementById('cityIcon');
@@ -43,7 +44,6 @@ function searchCity() {
   
   // get the user's message 
   let textValue = textArea.value
-  let storedHistoryState = [];
   let storedHistory = JSON.parse(localStorage.getItem('cityBlock'));
 
   if (storedHistory === null) {
@@ -55,7 +55,7 @@ function searchCity() {
     return
   } else {
     weatherApi(textValue)
-    if (historyBlockLi.length >= 8 || storedHistory.includes(textValue)) {
+    if (storedHistory.length > 7 || storedHistory.includes(textValue)) {
       textArea.value = ''
       return
     } else {
@@ -63,8 +63,7 @@ function searchCity() {
       li.classList.add('block')
       li.textContent = textValue
       historyUl.append(li)
-      storedHistoryState.push(textValue)
-      storedHistory = storedHistoryState
+      storedHistory.push(textValue)
       localStorage.setItem('cityBlock', JSON.stringify(storedHistory))
     }
     textArea.value = ''
@@ -131,6 +130,18 @@ function weatherApi(location) {
           humidP.textContent = humidity
           uvIndexP.textContent = uvi
 
+          // check UVIndex to change colors 
+          let uviNum = Math.floor(uvi)
+          if (uviNum <= 2) {
+            uvIndexP.style.backgroundColor = 'var(--green-clr)';
+          } else if (uviNum >= 3 && uviNum <= 5) {
+            uvIndexP.style.backgroundColor = 'var(--yellow-clr)';
+          } else if (uviNum == 6 || uviNum == 7) {
+            uvIndexP.style.backgroundColor = 'var(--orange-clr)';
+          } else if (uviNum >= 8) {
+            uvIndexP.style.backgroundColor = 'var(--red-clr)';
+          }
+
           // take off preloaders 
           setTimeout(() => {
             s1MainDiv.style.display = 'block'
@@ -154,7 +165,7 @@ function weatherApi(location) {
             let cardIcon = document.querySelectorAll('.weather-card-icon')
 
             // change each with new data 
-            cardIcon.src = `http://openweathermap.org/img/wn/${dayIcon}.png`
+            cardIcon[i].src = `http://openweathermap.org/img/wn/${dayIcon}.png`
             cardTemp[i].textContent = dayTemp
             cardWind[i].textContent = dayWind
             cardHmdy[i].textContent = dayHumd
@@ -172,8 +183,10 @@ historyClearBtn.addEventListener('click', () => {
 
 document.addEventListener('click', (e) => {
   if (e.target.className.includes('block')) {
-    console.log('clicked', e.target.textContent)
     weatherApi(e.target.textContent)
+    if (window.innerWidth < 540) {
+      s1.scrollIntoView()
+    }
   }
 });
 
@@ -181,5 +194,8 @@ searchBtn.addEventListener('click', searchCity)
 textArea.addEventListener('keyup',(e) => {
   if (e.code === "Enter") {
     searchCity()
+    if (window.innerWidth < 540) {
+      s1.scrollIntoView()
+    }
   }
 })

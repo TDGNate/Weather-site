@@ -3,12 +3,19 @@
 :root {
 	--lght-blue-clr: rgb(54, 124, 255);
 	--drk-blue-clr: rgb(0, 89, 255);
+
+	/* uvIndex Colors  */
+	--green-clr: rgb(0, 199, 83);
+	--yellow-clr: rgb(187, 190, 0);
+	--orange-clr: rgb(247, 148, 0);
+	--red-clr: rgb(247, 0, 0);
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -174,6 +181,12 @@ hr {
 	font-weight: bold;
 }
 
+#uvIndex {
+	background-color: transparent;
+	padding: 0.4rem 0.8rem;
+	border-radius: 3px;
+}
+
 .sec2 {
 	margin: 1rem;
 	grid-area: sec2;
@@ -215,6 +228,12 @@ hr {
 	margin-bottom: 0.3rem;
 }
 
+.weather-card-icon {
+	width: 45%;
+	justify-self: center;
+	align-self: center;
+}
+
 /* media queries  */
 
 /* tablet  */
@@ -227,6 +246,19 @@ hr {
 			'side side sec2 sec2';
 		height: auto;
 	}
+
+	.sec1 h3 {
+		flex-direction: column;
+	}
+
+	#cityName,
+	#cityDate {
+		font-size: 1.5rem;
+	}
+
+	#subCountry {
+		text-align: center;
+	}
 }
 
 /* phone  */
@@ -238,6 +270,19 @@ hr {
 			'sec1 sec1 sec1 sec1'
 			'sec2 sec2 sec2 sec2';
 		height: auto;
+	}
+
+	h1 {
+		font-size: 2.4rem;
+	}
+
+	.searching h3 {
+		font-size: 1.4rem;
+	}
+
+	main .sec1 h3,
+	.sec2 h3 {
+		font-size: 1.8rem;
 	}
 
 	.searching {
@@ -264,6 +309,10 @@ hr {
 	.weather-card {
 		width: 100%;
 		text-align: center;
+	}
+
+	.weather-card-icon {
+		width: 30%;
 	}
 }
 
