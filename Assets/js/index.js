@@ -125,7 +125,7 @@ function weatherApi(location) {
           }
           s1cityDate.textContent = `${today}`;
           s1cityCountry.textContent = country;
-          s1cityIcon.src = `http://openweathermap.org/img/wn/${icon}.png`
+          s1cityIcon.src = `https://openweathermap.org/img/wn/${icon}.png`
           tempP.textContent = temp;
           windP.textContent = wind_speed
           humidP.textContent = humidity
@@ -166,7 +166,7 @@ function weatherApi(location) {
             let cardIcon = document.querySelectorAll('.weather-card-icon');
 
             // change each with new data 
-            cardIcon[i].src = `http://openweathermap.org/img/wn/${dayIcon}.png`
+            cardIcon[i].src = `https://openweathermap.org/img/wn/${dayIcon}.png`
             cardTemp[i].textContent = dayTemp
             cardWind[i].textContent = dayWind
             cardHmdy[i].textContent = dayHumd
