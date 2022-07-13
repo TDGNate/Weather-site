@@ -73,7 +73,7 @@ function searchCity() {
 
 function weatherApi(location) {
   let apiKey = `a1d94660e7da91b5ead6e3196cf26420`
-  let url1 = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${apiKey}`
+  let url1 = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${apiKey}`
 
   // call api 
   fetch(url1)
