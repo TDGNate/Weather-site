@@ -1,3 +1,4 @@
+moment().format();
 // searching section 
 const textArea = document.getElementById('userInputText');
 const searchBtn = document.getElementById('searchBtn');
@@ -159,10 +160,10 @@ function weatherApi(location) {
             let dayIcon = day.weather[0].icon
 
             // each card 
-            let cardTemp = document.querySelectorAll('.cardTemp')
-            let cardWind = document.querySelectorAll('.cardWind')
-            let cardHmdy = document.querySelectorAll('.cardHmdy')
-            let cardIcon = document.querySelectorAll('.weather-card-icon')
+            let cardTemp = document.querySelectorAll('.cardTemp');
+            let cardWind = document.querySelectorAll('.cardWind');
+            let cardHmdy = document.querySelectorAll('.cardHmdy');
+            let cardIcon = document.querySelectorAll('.weather-card-icon');
 
             // change each with new data 
             cardIcon[i].src = `http://openweathermap.org/img/wn/${dayIcon}.png`
@@ -170,7 +171,12 @@ function weatherApi(location) {
             cardWind[i].textContent = dayWind
             cardHmdy[i].textContent = dayHumd
           }
-        
+
+          // add dates on each card 
+          let cardDate = document.querySelectorAll('.weather-card-date');
+          for (j = 0; j < cardDate.length; j++) {
+            cardDate[j].textContent = moment().add(j + 1, 'd').format("M/D/YYYY");
+          }
         })
 
   })
