@@ -10,8 +10,6 @@ This website lets the user search up cities and will return their city's tempera
 
 Live Page: https://tdgnate.github.io/weather-site/
 
-Repo: https://github.com/TDGNate/weather-site
-
 ## Images
 
 - Desktop
@@ -21,3 +19,11 @@ Repo: https://github.com/TDGNate/weather-site
 - Mobile
 
 <img src="./Assets/imgs/PhoneWeatherSite.png" alt="Website Phone Version">
+
+## Questions
+
+_Reach Out!_
+
+Github: [TDGNate](https://github.com/TDGNate)
+
+Email: itsnzte@gmail.com
